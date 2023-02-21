@@ -1,7 +1,8 @@
 import Head from "next/head";
-import Image from "next/image";
 import { Inter } from "@next/font/google";
 import styles from "@/styles/Home.module.css";
+import Result from '../components/result';
+import Form from '../components/form';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,9 +16,13 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <div className={styles.description}>
           <h1>Sustainable Fashion</h1>
-        </div>
+          <div className={styles.container}>
+            <section className={styles.section}><Result data={{}} /></section>
+            <section className={styles.section}><Form/></section>
+          </div>
+   
+         
       </main>
     </>
   );

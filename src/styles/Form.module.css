@@ -1,0 +1,11 @@
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    align-self: center;
+    margin-top: 20px;
+}
+
+.material {
+    display: flex;
+    justify-content: space-evenly;
+}
