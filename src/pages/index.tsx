@@ -1,11 +1,12 @@
 import Head from "next/head";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Inter } from "@next/font/google";
 import styles from "@/styles/Home.module.css";
 import Result from '@/components/result';
 import Form from '@/components/form';
 import {calculcateSustainablity} from '@/helper/helper';
 import { Material } from "@/interfaces/types";
+import Toast from "@/components/toast";
 
 
 export default function Home() {
@@ -14,6 +15,14 @@ export default function Home() {
 
   const handleCalculateScore = (materials : Material[]) => {
     calculcateSustainablity(materials)
+  }
+
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("")
+
+  const handleToast = (message : string) => {
+    setToastMessage(message)
+    setShowToast(true)
   }
 
   return (
@@ -30,9 +39,10 @@ export default function Home() {
       <main className={styles.main}>
           <div className={styles.container}>
             <section className={styles.section}><Result score={sustainabilityScore} data={{}} /></section>
-            <section className={styles.section}><Form /></section>
+            <section className={styles.section}><Form onHandleToast={handleToast} /></section>
           </div>
       </main>
+      <Toast message={toastMessage} isToastOpen={showToast} closeToast={() => setShowToast(false)} />
     </>
   );
 }

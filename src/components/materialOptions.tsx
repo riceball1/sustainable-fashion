@@ -5,9 +5,10 @@ interface MaterialOptions {
     onRemoveMaterial: () => void;
     onChangePercentage: () => void;
     onSelectMaterial: () => void;
+    percentage: number;
 }
 
-function MaterialOptions({onRemoveMaterial, onChangePercentage, onSelectMaterial} : MaterialOptions)  {
+function MaterialOptions({onRemoveMaterial, onChangePercentage, onSelectMaterial, percentage} : MaterialOptions)  {
 
 
   return (
@@ -23,7 +24,7 @@ function MaterialOptions({onRemoveMaterial, onChangePercentage, onSelectMaterial
         <option value="lyocell">lyocell</option>
         <option value="organic-cotton">organic cotton</option>
       </select>
-      <input type="number" placeholder="%" onChange={onChangePercentage} className={styles.materialOptionsInput} min={1} max={100} required/>
+      <input type="number" placeholder="%" onChange={onChangePercentage} className={styles.materialOptionsInput} min={1} max={100} required value={percentage}/>
       <Button onClick={onRemoveMaterial} text="remove" type="alert"/>
     </div>
   );

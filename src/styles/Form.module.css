@@ -6,6 +6,10 @@
     width: 100%;
 }
 
+.buttons div {
+    width: 50%;
+}
+
 .formInputs {
     display: flex;
     justify-content: space-evenly;
@@ -18,8 +22,12 @@
     flex-direction: column;
 }
 
-.message {
+.message, .messageError {
     font-size: 0.8rem;
     color: lightgray;
     padding: 5px;
+}
+
+.messageError {
+    color: red;
 }
