@@ -1,9 +1,10 @@
 import styles from "@/styles/MaterialOptions.module.css";
+import Button from "./button";
 
 interface MaterialOptions {
-    onRemoveMaterial: () => {};
-    onChangePercentage: () => {};
-    onSelectMaterial: () => {};
+    onRemoveMaterial: () => void;
+    onChangePercentage: () => void;
+    onSelectMaterial: () => void;
 }
 
 function MaterialOptions({onRemoveMaterial, onChangePercentage, onSelectMaterial} : MaterialOptions)  {
@@ -23,7 +24,7 @@ function MaterialOptions({onRemoveMaterial, onChangePercentage, onSelectMaterial
         <option value="organic-cotton">organic cotton</option>
       </select>
       <input type="number" placeholder="%" onChange={onChangePercentage}/>
-      <button onClick={onRemoveMaterial}>remove</button>
+      <Button onClick={onRemoveMaterial} text="remove" type="error"/>
     </div>
   );
 }

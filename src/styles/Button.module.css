@@ -1,0 +1,14 @@
+.primary, .secondary {
+    border-radius: 5px;
+    padding: 5px;
+    color: black;
+    width: 50%;
+}
+
+.primary {
+    background-color: hotpink;
+}
+
+.secondary {
+    background-color: aquamarine;
+}

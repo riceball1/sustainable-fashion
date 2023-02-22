@@ -6,12 +6,11 @@ import Result from '../components/result';
 import Form from '../components/form';
 
 const inter = Inter({ subsets: ["latin"] });
-
+export interface Material {
+  name: String;
+  percentage: Number;
+}
 export default function Home() {
-  interface Material {
-    name: String;
-    percentage: Number;
-  }
 
   const [sustainabilityScore, setSustainabilityScore] = useState(0)
   // function used to calculate the materials percentage in the clothing item
