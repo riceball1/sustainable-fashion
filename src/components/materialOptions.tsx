@@ -12,7 +12,7 @@ function MaterialOptions({onRemoveMaterial, onChangePercentage, onSelectMaterial
 
   return (
     <div className={styles.materialOptions}>
-      <select name="materials" id="materials" onChange={onSelectMaterial}>
+      <select name="materials" id="materials" onChange={onSelectMaterial} className={styles.materialOptionsInput} required>
         <option value="rayon">rayon</option>
         <option value="polyster">polyster</option>
         <option value="acrylic">acrylic</option>
@@ -23,7 +23,7 @@ function MaterialOptions({onRemoveMaterial, onChangePercentage, onSelectMaterial
         <option value="lyocell">lyocell</option>
         <option value="organic-cotton">organic cotton</option>
       </select>
-      <input type="number" placeholder="%" onChange={onChangePercentage}/>
+      <input type="number" placeholder="%" onChange={onChangePercentage} className={styles.materialOptionsInput} min={1} max={100} required/>
       <Button onClick={onRemoveMaterial} text="remove" type="alert"/>
     </div>
   );

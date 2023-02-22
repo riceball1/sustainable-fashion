@@ -46,7 +46,7 @@ function Form() {
       <div className={styles.buttons}>
         <div>
           <Button onClick={handleAddMaterial} text="Add Material" type="secondary"/>
-          <p>Limit of 5 materials.</p>
+          <p className={styles.message}>Limit of 5 materials.</p>
         </div>
         <Button onClick={handleAnalyzeMaterials} text="Analyze" />
       </div>

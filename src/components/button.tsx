@@ -1,21 +1,28 @@
-import styles from '../styles/Button.module.css'
+import styles from "../styles/Button.module.css";
 
 interface Props {
-    text: String;
-    onClick: () => void;
-    type?: string;
+  text: String;
+  onClick: () => void;
+  type?: string;
 }
 
-function Button({onClick, text, type = "primary"} : Props) {
+function Button({ onClick, text, type = "primary" }: Props) {
+  const buttonType = {
+    primary: styles.primary,
+    secondary: styles.secondary,
+    alert: styles.alert,
+  };
 
-    const buttonType = {
-        primary: styles.primary,
-        secondary: styles.secondary,
-        alert: styles.alert
-    }
-
+  
+  return (
+    <button
     // @ts-ignore
-    return <button className={`${buttonType[type]} ${styles.button}`} onClick={onClick}>{text}</button>
+      className={`${buttonType[type]} ${styles.button}`}
+      onClick={onClick}
+    >
+      {text}
+    </button>
+  );
 }
 
 export default Button;

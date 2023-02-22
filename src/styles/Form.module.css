@@ -3,6 +3,7 @@
     justify-content: space-between;
     align-self: center;
     margin-top: 20px;
+    width: 100%;
 }
 
 .formInputs {
@@ -15,4 +16,10 @@
     display: flex;
     justify-content: space-evenly;
     flex-direction: column;
+}
+
+.message {
+    font-size: 0.8rem;
+    color: lightgray;
+    padding: 5px;
 }
