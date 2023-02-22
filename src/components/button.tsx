@@ -14,7 +14,7 @@ function Button({onClick, text, type = "primary"} : Props) {
         alert: styles.alert
     }
 
-    return <button className={buttonType[type]} onClick={onClick}>{text}</button>
+    return <button className={`${buttonType[type]} ${styles.button}`} onClick={onClick}>{text}</button>
 }
 
 export default Button;

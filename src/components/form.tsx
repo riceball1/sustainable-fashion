@@ -1,14 +1,14 @@
 import styles from "@/styles/Form.module.css";
 import { useState } from "react";
-import MaterialOptions from "./materialOptions";
-import Button from "./button"
-
+import MaterialOptions from "@/components/materialOptions";
+import Button from "@/components/button"
+import { Material } from "@/interfaces/types";
 
 interface Props {
-    onCalculateSustainabilityScore: (Material[]) => Number;
+    // onCalculateSustainabilityScore: (Material[]) => Material[];
 }
 
-function Form({onCalculateSustainabilityScore} : Props) {
+function Form() {
   const [state, setState] = useState([
     { id: 1, name: "null", percentage: 0 },
     { id: 2, name: "null", percentage: 0 },
@@ -16,7 +16,7 @@ function Form({onCalculateSustainabilityScore} : Props) {
 
   const handleAnalyzeMaterials = () => {
     console.log('Analyze materials')
-    onCalculateSustainabilityScore(state)
+    // onCalculateSustainabilityScore(state)
   }
 
   const handleAddMaterial = () => {
@@ -36,8 +36,8 @@ function Form({onCalculateSustainabilityScore} : Props) {
   }
 
   return (
-    <>
-      <div className={styles.form}>
+    <div className={styles.form}>
+      <div className={styles.formInputs}>
         {state.map((item) => {
           return <MaterialOptions onRemoveMaterial={handleRemoveMaterial} key={item.name} onChangePercentage={() => {}} onSelectMaterial={() => {}}/>;
         })}
@@ -50,7 +50,7 @@ function Form({onCalculateSustainabilityScore} : Props) {
         </div>
         <Button onClick={handleAnalyzeMaterials} text="Analyze" />
       </div>
-    </>
+    </div>
   );
 }
 

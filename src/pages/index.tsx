@@ -2,35 +2,19 @@ import Head from "next/head";
 import { useState } from "react";
 import { Inter } from "@next/font/google";
 import styles from "@/styles/Home.module.css";
-import Result from '../components/result';
-import Form from '../components/form';
+import Result from '@/components/result';
+import Form from '@/components/form';
+import {calculcateSustainablity} from '@/helper/helper';
+import { Material } from "@/interfaces/types";
 
-const inter = Inter({ subsets: ["latin"] });
-export interface Material {
-  name: String;
-  percentage: Number;
-}
+
 export default function Home() {
 
   const [sustainabilityScore, setSustainabilityScore] = useState(0)
-  // function used to calculate the materials percentage in the clothing item
-  // the return value will be a percentage based on if it's more or less sustainable
 
-  const calculcateSustainablity = (materials : Material[]) => {
-    const materialWeight = {
-      'rayon': 100,
-    }
-
-    let score = 0;
-    const arr = materials;
-    
-    // iterate over the materials array
-
-    // set the score
-    setSustainabilityScore(score)
-
+  const handleCalculateScore = (materials : Material[]) => {
+    calculcateSustainablity(materials)
   }
-
 
   return (
     <>
@@ -40,11 +24,13 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
+      <header className={styles.header}>
           <h1>Sustainable Fashion</h1>
+      </header>
+      <main className={styles.main}>
           <div className={styles.container}>
             <section className={styles.section}><Result score={sustainabilityScore} data={{}} /></section>
-            <section className={styles.section}><Form onCalculateSustainabilityScore={calculcateSustainablity}/></section>
+            <section className={styles.section}><Form /></section>
           </div>
       </main>
     </>

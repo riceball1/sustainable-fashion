@@ -1,8 +1,9 @@
-.primary, .secondary {
+.button {
     border-radius: 5px;
     padding: 5px;
     color: black;
     width: 50%;
+    height: 45px;
 }
 
 .primary {
@@ -11,4 +12,9 @@
 
 .secondary {
     background-color: aquamarine;
+}
+
+.alert {
+    background-color: red;
+    width: 25%;
 }

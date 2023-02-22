@@ -24,7 +24,7 @@ function MaterialOptions({onRemoveMaterial, onChangePercentage, onSelectMaterial
         <option value="organic-cotton">organic cotton</option>
       </select>
       <input type="number" placeholder="%" onChange={onChangePercentage}/>
-      <Button onClick={onRemoveMaterial} text="remove" type="error"/>
+      <Button onClick={onRemoveMaterial} text="remove" type="alert"/>
     </div>
   );
 }
