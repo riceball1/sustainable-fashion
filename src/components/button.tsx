@@ -14,6 +14,7 @@ function Button({onClick, text, type = "primary"} : Props) {
         alert: styles.alert
     }
 
+    // @ts-ignore
     return <button className={`${buttonType[type]} ${styles.button}`} onClick={onClick}>{text}</button>
 }
 
