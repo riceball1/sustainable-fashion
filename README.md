@@ -24,9 +24,5 @@ Main page includes:
 ## Technologies
 
 The app uses the following technologies:
-- tailwindcss
-- d3.js
 - nextjs
 - react
-- typescript
-- nodejs server

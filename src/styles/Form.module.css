@@ -5,7 +5,9 @@
     margin-top: 20px;
 }
 
-.material {
+
+.form {
     display: flex;
     justify-content: space-evenly;
+    flex-direction: column;
 }
