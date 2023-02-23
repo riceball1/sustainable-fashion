@@ -2,6 +2,16 @@
   display: flex;
   justify-content: space-between;
   gap: 15px;
+  align-content: center;
+  align-items: center;
+}
+
+.materialOptionsInputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 50%;
 }
 
 .materialOptionsInput {
@@ -11,9 +21,30 @@
     font-size: 1rem;
 }
 
-@media screen and (max-width: 615px) {
+.materialOptionsSelect {
+  color: black;
+  width: 100%;
+}
+
+
+@media screen and (max-width: 560px) {
+  .materialOptionsInputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+    border-top: 1px solid lightblue;
+    padding-top: 10px;
+  }
   .materialOptions {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+
   }
+  
 }

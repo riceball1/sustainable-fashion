@@ -28,3 +28,13 @@
   background-color: gold;
   width: 15%;
 }
+
+.disable {
+  background-color: lightgray;
+}
+
+@media screen and (max-width: 615px) {
+  .button, .alert, .primary {
+    width: 75%;
+  }
+}

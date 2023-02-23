@@ -1,53 +1,130 @@
 import styles from "@/styles/Form.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import MaterialOptions from "@/components/materialOptions";
 import Button from "@/components/button";
-import { Material } from "@/interfaces/types";
 
 interface Props {
   // onCalculateSustainabilityScore: (Material[]) => Material[];
-  onHandleToast: () => void;
+  onHandleToast: (message: string) => void;
 }
 
-function Form({onHandleToast}) {
-  const [state, setState] = useState([
-    { id: 1, name: "rayon", percentage: 50 },
-    { id: 2, name: "organic cotton", percentage: 50 },
+interface State {
+  id: string;
+  name: string;
+  percentage: number;
+}
+
+function Form({ onHandleToast }: Props) {
+  const generateId = () => `id${Math.random() * 10}`;
+
+  const [state, setState] = useState<State[]>([
+    { id: generateId(), name: "rayon", percentage: 50 },
+    { id: generateId(), name: "cotton", percentage: 50 },
   ]);
 
-  const [error, setError] = useState(false);
+  const [error, setError] = useState({ message: "", hasError: false });
+
+  useEffect(() => {
+    // check if state changes and clear errors
+    setError({message: "", hasError: false})
+
+  }, [state])
 
   const handleAnalyzeMaterials = () => {
-    setError(false);
+    setError({ message: "", hasError: false });
+
+    // check if total percentage is 100
     const percentageTotal = state
-      .map((item) => item.percentage)
+      .map((item) => Number(item.percentage))
       .reduce((total, sum) => (total += sum), 0);
 
-    console.log(percentageTotal)
-    if (percentageTotal !== 100) {
-      setError(true);
+    // check if any of the percentage is 0
+    const allPercentageFilled = state.every((item) => item.percentage);
+
+    // check for duplicate names
+    const hasDuplicateNames = new Set(state.map(item => item.name)).size !== state.length;
+
+    if (!allPercentageFilled) {
+      setError({
+        message: "Error! All materials needs percentage",
+        hasError: true,
+      });
+    } else if (percentageTotal !== 100) {
+      setError({ message: "Error! Total needs to be 100%", hasError: true });
+    } else if (hasDuplicateNames) {
+      setError({ message: "Error! Materials should be unique", hasError: true });
+    } else {
+      onHandleToast("Analyze Materials");
     }
-    console.log("Analyze materials");
     // onCalculateSustainabilityScore(state)
-    onHandleToast('Analyze Materials')
   };
 
   const handleAddMaterial = () => {
     if (state.length < 5) {
-      console.log("Add more material");
-      onHandleToast('Added More Materials')
+      setState((prevState) => [
+        ...prevState,
+        { id: generateId(), name: "rayon", percentage: 10 },
+      ]);
+      onHandleToast("Added More Materials");
       // update the state so it will include additional material
     }
 
     // do nothing if number of materials exceed 5
   };
 
-  const handleRemoveMaterial = () => {
+  const handleRemoveMaterial = (materialId: string) => {
     if (state.length > 1) {
-      console.log("Remove material");
-      onHandleToast('Removed Material')
+      const index = state.findIndex((item) => {
+        return item.id === materialId;
+      });
+
+      const newState = [...state.slice(0, index), ...state.slice(index + 1)];
+      setState(newState);
+      onHandleToast("Removed Material");
     }
     // do nothing if there's only one item left
+  };
+
+  const handleOnChangeMaterial = ({
+    selectedMaterial,
+    materialId,
+  }: {
+    selectedMaterial: string;
+    materialId: string;
+  }) => {
+    const item = state.filter((item) => item.id === materialId)[0];
+    const index = state.findIndex((item) => {
+      return item.id === materialId;
+    });
+    const newItem = {
+      ...item,
+      name: selectedMaterial,
+    };
+
+    const newState = [...state];
+    newState[index] = newItem;
+    setState(newState);
+  };
+
+  const handleOnChangePercentage = ({
+    percentage,
+    materialId,
+  }: {
+    percentage: number;
+    materialId: string;
+  }) => {
+    const item = state.filter((item) => item.id === materialId)[0];
+    const index = state.findIndex((item) => {
+      return item.id === materialId;
+    });
+    const newItem = {
+      ...item,
+      percentage,
+    };
+
+    const newState = [...state];
+    newState[index] = newItem;
+    setState(newState);
   };
 
   return (
@@ -57,10 +134,12 @@ function Form({onHandleToast}) {
           return (
             <MaterialOptions
               onRemoveMaterial={handleRemoveMaterial}
-              key={item.name}
-              onChangePercentage={() => {}}
-              onSelectMaterial={() => {}}
+              key={item.id}
+              onChangePercentage={handleOnChangePercentage}
+              onSelectMaterial={handleOnChangeMaterial}
               percentage={item.percentage}
+              material={item.name}
+              materialId={item.id}
             />
           );
         })}
@@ -72,13 +151,14 @@ function Form({onHandleToast}) {
             onClick={handleAddMaterial}
             text="Add Material"
             type="secondary"
+            disable={state.length === 5}
           />
           <p className={styles.message}>Limit of 5 materials.</p>
         </div>
         <div>
           <Button onClick={handleAnalyzeMaterials} text="Analyze" />
-          {error && (
-            <p className={styles.messageError}>Error! total needs to be 100%</p>
+          {error.hasError && (
+            <p className={styles.messageError}>{error.message}</p>
           )}
         </div>
       </div>
