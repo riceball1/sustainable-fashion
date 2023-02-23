@@ -26,3 +26,20 @@ Main page includes:
 The app uses the following technologies:
 - nextjs
 - react
+
+
+## How to Use
+
+<img src="public/screenshot1.png"
+     alt="screenshot1"
+     style="float: left; margin-right: 10px;" />
+
+- User can select material from select dropdown
+- User can update percentage of material
+- User can remove a material
+- User can add more material
+- User is limited 5 materials total to analyze
+- User can analyze material if the following is met:
+     - all materials are unique
+     - total of material percentage is 100%
+     - all materials have a percentage
