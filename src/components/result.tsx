@@ -1,13 +1,15 @@
+import styles from '@/styles/Result.module.css'
+
 function Result({ data = {}, score = 0 }) {
   return (
-    <div>
+    <div className={styles.result}>
       <h2>
         {score > 0
           ? `Sustainabilty score is ${score}`
           : "Please analyze materials to get sustainability score"}
       </h2>
-    <div>
-      {Object.keys(data).length > 0 ? 'Result Component' : 'No data'}
+    <div className={styles.percentageResult}>
+      {score}%
     </div>
     </div>
   );
