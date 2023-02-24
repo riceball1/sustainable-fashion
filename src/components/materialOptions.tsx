@@ -1,25 +1,25 @@
-import styles from "@/styles/MaterialOptions.module.css";
-import Button from "./button";
-import Select, { SingleValue } from "react-select";
+import styles from '@/styles/MaterialOptions.module.css'
+import Button from './button'
+import Select, { SingleValue } from 'react-select'
 interface MaterialOptions {
-  onRemoveMaterial: (materialId: string) => void;
+  onRemoveMaterial: (materialId: string) => void
   onChangePercentage: ({
     percentage,
     materialId,
   }: {
-    percentage: number;
-    materialId: string;
-  }) => void;
+    percentage: number
+    materialId: string
+  }) => void
   onSelectMaterial: ({
     selectedMaterial,
     materialId,
   }: {
-    selectedMaterial: string;
-    materialId: string;
-  }) => void;
-  percentage: number;
-  material: string;
-  materialId: string;
+    selectedMaterial: string
+    materialId: string
+  }) => void
+  percentage: number
+  material: string
+  materialId: string
 }
 
 function MaterialOptions({
@@ -31,31 +31,31 @@ function MaterialOptions({
   materialId,
 }: MaterialOptions) {
   const options = [
-    { value: "rayon", label: "rayon" },
-    { value: "polyster", label: "polyster" },
-    { value: "acrylic", label: "acrylic" },
-    { value: "nylon", label: "nylon" },
-    { value: "cotton", label: "cotton" },
-    { value: "hemp", label: "hemp" },
-    { value: "linen", label: "linen" },
-    { value: "lyocell", label: "lyocell" },
-    { value: "organic cotton", label: "organic cotton" },
-  ];
+    { value: 'rayon', label: 'rayon' },
+    { value: 'polyster', label: 'polyster' },
+    { value: 'acrylic', label: 'acrylic' },
+    { value: 'nylon', label: 'nylon' },
+    { value: 'cotton', label: 'cotton' },
+    { value: 'hemp', label: 'hemp' },
+    { value: 'linen', label: 'linen' },
+    { value: 'lyocell', label: 'lyocell' },
+    { value: 'organic cotton', label: 'organic cotton' },
+  ]
 
-  const selectedOption = options.filter((item) => item.value === material)[0];
+  const selectedOption = options.filter((item) => item.value === material)[0]
 
   const handleSelectMaterial = (
-    newValue: SingleValue<{ value: string; label: string }>
+    newValue: SingleValue<{ value: string; label: string }>,
   ) => {
     onSelectMaterial({
-      selectedMaterial: newValue?.value || "rayon",
+      selectedMaterial: newValue?.value || 'rayon',
       materialId: materialId,
-    });
-  };
+    })
+  }
 
   const handlePercentageChange = (percentage: number) => {
-    onChangePercentage({ percentage, materialId });
-  };
+    onChangePercentage({ percentage, materialId })
+  }
 
   return (
     <div className={styles.materialOptions}>
@@ -77,9 +77,13 @@ function MaterialOptions({
           value={percentage}
         />
       </div>
-      <Button onClick={() => onRemoveMaterial(materialId)} text="remove" type="alert" />
+      <Button
+        onClick={() => onRemoveMaterial(materialId)}
+        text="remove"
+        type="alert"
+      />
     </div>
-  );
+  )
 }
 
-export default MaterialOptions;
+export default MaterialOptions

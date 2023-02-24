@@ -1,4 +1,4 @@
 export interface Material {
-    name: String;
-    percentage: Number;
-  }
+  name: String
+  percentage: Number
+}

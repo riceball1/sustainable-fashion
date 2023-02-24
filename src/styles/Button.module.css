@@ -34,7 +34,9 @@
 }
 
 @media screen and (max-width: 615px) {
-  .button, .alert, .primary {
+  .button,
+  .alert,
+  .primary {
     width: 75%;
   }
 }

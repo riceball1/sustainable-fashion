@@ -1,34 +1,34 @@
-import styles from "../styles/Button.module.css";
+import styles from '../styles/Button.module.css'
 
 interface Props {
-  text: String;
-  onClick: () => void;
-  type?: string;
-  disable?: boolean;
+  text: String
+  onClick: () => void
+  type?: string
+  disable?: boolean
 }
 
-function Button({ onClick, text, type = "primary", disable = false }: Props) {
+function Button({ onClick, text, type = 'primary', disable = false }: Props) {
   const buttonType = {
     primary: styles.primary,
     secondary: styles.secondary,
     alert: styles.alert,
-    disable: styles.disable
-  };
+    disable: styles.disable,
+  }
 
-  if(disable) {
+  if (disable) {
     type = 'disable'
   }
-  
+
   return (
     <button
-    // @ts-ignore
+      // @ts-ignore
       className={`${buttonType[type]} ${styles.button}`}
       onClick={onClick}
       disabled={disable}
     >
       {text}
     </button>
-  );
+  )
 }
 
-export default Button;
+export default Button
